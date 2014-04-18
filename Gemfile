@@ -6,6 +6,12 @@ gem 'rails', '4.0.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
+# Use twitter bootstrap to generate view
+gem 'bootstrap-sass', '~> 3.1.1'
+
+# Use haml to generate views
+gem 'haml', '~> 4.0.5'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
