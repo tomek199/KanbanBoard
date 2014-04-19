@@ -1,0 +1,3 @@
+$ ->
+  # $(".btn").tooltip()
+  # return
