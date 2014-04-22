@@ -1,21 +1,13 @@
-%h1 Listing boards
+%h2
+  %span.glyphicon.glyphicon-th-large
+  My boards
+  = link_to new_board_path, class: "btn btn-sm btn-success", remote: true, title: "Add board", "data-toggle" => "tooltip" do 
+    %span.glyphicon.glyphicon-plus
 
-%table
-  %tr
-    %th Name
-    %th Description
-    %th
-    %th
-    %th
+.row.boards
+  = render @boards
 
-  - @boards.each do |board|
-    %tr
-      %td= board.name
-      %td= board.description
-      %td= link_to 'Show', board
-      %td= link_to 'Edit', edit_board_path(board)
-      %td= link_to 'Destroy', board, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Board', new_board_path
+.modal.fade#board-modal
+  .modal-dialog
+    .modal-content#board-modal-content
+      

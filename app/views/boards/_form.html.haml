@@ -1,16 +1,21 @@
-= form_for @board do |f|
-  - if @board.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@board.errors.count, "error")} prohibited this board from being saved:"
-      %ul
-        - @board.errors.full_messages.each do |msg|
-          %li= msg
+= form_for @board, remote: true do |f|
+  .modal-body
+    - if @board.errors.any?
+      .alert.alert-danger
+        %strong 
+          %span.glyphicon.glyphicon-remove.form-control-feedback
+          Form validation errors!
+        
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :description
-    = f.text_area :description
-  .actions
-    = f.submit 'Save'
+    .form-group{class: ("has-error has-feedback" if @board.errors.include? :name)}
+      = f.label :name
+      = f.text_field :name, class: "form-control"
+      %p.text-danger= @board.errors.get(:name).join
+      
+    .form-group
+      = f.label :description
+      = f.text_area :description, class: "form-control"
+  
+  .modal-footer    
+    %button.btn.btn-default{"data-dismiss" => "modal"} Close
+    = f.submit 'Save', class: "btn btn-primary"

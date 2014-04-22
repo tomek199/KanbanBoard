@@ -1,0 +1,11 @@
+.modal-header
+  %h3 Delete board
+.modal-body
+  .alert.alert-danger 
+    Are you sure you want to delete board
+    %strong
+      = @board.name
+      ?
+  .modal-footer
+    = link_to "Yes", board_path(@board), method: :delete, remote: true, class: "btn btn-danger"
+    %button.btn.btn-default{"data-dismiss" => "modal"} No

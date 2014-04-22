@@ -29,11 +29,9 @@ class BoardsController < ApplicationController
 
     respond_to do |format|
       if @board.save
-        format.html { redirect_to @board, notice: 'Board was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @board }
+        format.js { render action: 'create', status: :created, location: @board }
       else
-        format.html { render action: 'new' }
-        format.json { render json: @board.errors, status: :unprocessable_entity }
+        format.js { render action: 'new' }
       end
     end
   end
@@ -51,14 +49,22 @@ class BoardsController < ApplicationController
       end
     end
   end
+  
+  # DELETE /boards/1
+  # generate modal to confirm
+  def delete
+    @board = Board.find(params[:board_id])
+    respond_to do |format|
+      format.js {render action: "delete"}
+    end
+  end
 
   # DELETE /boards/1
   # DELETE /boards/1.json
   def destroy
     @board.destroy
     respond_to do |format|
-      format.html { redirect_to boards_url }
-      format.json { head :no_content }
+      format.js { }
     end
   end
 
