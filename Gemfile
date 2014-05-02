@@ -18,6 +18,9 @@ gem 'haml-rails'
 # Use devise to authentication
 gem 'devise'
 
+# Use best_in_place to ajax editing
+gem 'best_in_place', github: "bernat/best_in_place"
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
