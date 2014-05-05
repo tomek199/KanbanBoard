@@ -1,4 +1,4 @@
-$(".row.boards").append "<%=j render @board %>"
+$(".row.boards.owner").append "<%=j render @board %>"
 $("#board-modal").modal "hide"
 alert = $(".alert-success").show 200
 window.setTimeout (->

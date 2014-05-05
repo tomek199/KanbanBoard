@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
   
   def get_boards
-    @boards = Board.all
+    @all_boards = current_user.boards
   end
   
   def layout_by_resource

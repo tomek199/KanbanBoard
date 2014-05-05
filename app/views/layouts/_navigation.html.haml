@@ -15,7 +15,7 @@
             %b.caret
           %ul.dropdown-menu
             %li 
-              - @boards.each do |board|
+              - @all_boards.each do |board|
                 = link_to board.name, board
       %form.navbar-form.navbar-left{role: "search"}
         .form-group

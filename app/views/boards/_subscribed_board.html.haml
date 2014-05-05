@@ -1,0 +1,10 @@
+.col-sm-4{id: "board_" + board.id.to_s}
+  .thumbnail
+    .caption
+      %h3= board.name
+      %p= board.description
+      .btn-group
+        = link_to board, class: "btn btn-primary" do 
+          %span.glyphicon.glyphicon-search
+          Show
+      

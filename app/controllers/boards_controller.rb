@@ -5,7 +5,8 @@ class BoardsController < ApplicationController
   # GET /boards
   # GET /boards.json
   def index
-    @boards = Board.all
+    @boards = Board.get_user_boards current_user, 1
+    @subscribed_boards = Board.get_user_boards current_user, 0
   end
 
   # GET /boards/1
@@ -26,6 +27,8 @@ class BoardsController < ApplicationController
   # POST /boards.json
   def create
     @board = Board.new(board_params)
+    @board.users << current_user
+    @board.user_boards[0].owner = 1
 
     respond_to do |format|
       if @board.save
@@ -42,8 +45,10 @@ class BoardsController < ApplicationController
     respond_to do |format|
       if @board.update(board_params)
         format.json { head :no_content }
+        format.js {}
       else
         format.json { render json: @board.errors, status: :unprocessable_entity }
+        format.js {}
       end
     end
   end

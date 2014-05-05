@@ -9,9 +9,15 @@
   My boards
   = link_to new_board_path, class: "btn btn-sm btn-success", remote: true, title: "Add board", "data-toggle" => "tooltip" do 
     %span.glyphicon.glyphicon-plus
-
-.row.boards
+.row.boards.owner
   = render @boards
+  
+%h2
+  %span.glyphicon.glyphicon-th
+  Subscribed boards
+.row.boards
+  - @subscribed_boards.each do |subscribed_board|
+    = render partial: "boards/subscribed_board", locals: {board: subscribed_board}
 
 .modal.fade#board-modal
   .modal-dialog
