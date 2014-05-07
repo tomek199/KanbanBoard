@@ -1,0 +1,19 @@
+= form_for [@board, @list], remote: true do |f|
+  .modal-body
+    - if @list.errors.any?
+      .alert.alert-danger
+        %strong
+          %span.glyphicon.glyphicon-remove.form-control-feedback
+          Form validation errors!
+
+    .form-group{class: ("has-error has-feedback" if @list.errors.include? :name)}
+      = f.label :name
+      = f.text_field :name, class: "form-control"
+    .form-group
+      = f.label :description
+      = f.text_area :description, class: "form-control"
+    = f.hidden_field :board_id, value: @board.id
+    
+  .modal-footer
+    %button.btn.btn-default{"data-dismiss" => "modal"} Close
+    = f.submit 'Save', class: "btn btn-primary"

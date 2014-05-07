@@ -1,0 +1,36 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: List 1
+  order: 1
+  board_id: 2
+
+two:
+  name: List 2
+  order: 2
+  board_id: 2
+
+three:
+  name: List 3
+  order: 3
+  board_id: 2
+  
+four:
+  name: List 3
+  order: 1
+  board_id: 1
+  
+five:
+  name: List 3
+  order: 2
+  board_id: 1
+  
+six:
+  name: List 3
+  order: 3
+  board_id: 1
+
+seven: 
+  name: List 3
+  order: 4
+  board_id: 1

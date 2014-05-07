@@ -1,7 +1,9 @@
 KanbanBoard::Application.routes.draw do
+  
   devise_for :users
   resources :boards do
     get "delete"
+    resources :lists, shallow: true
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

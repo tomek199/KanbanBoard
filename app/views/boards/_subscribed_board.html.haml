@@ -4,7 +4,7 @@
       %h3= board.name
       %p= board.description
       .btn-group
-        = link_to board, class: "btn btn-primary" do 
+        = link_to board_lists_path(board), class: "btn btn-primary" do 
           %span.glyphicon.glyphicon-search
           Show
       

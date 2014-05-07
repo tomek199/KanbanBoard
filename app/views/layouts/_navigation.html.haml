@@ -16,7 +16,7 @@
           %ul.dropdown-menu
             %li 
               - @all_boards.each do |board|
-                = link_to board.name, board
+                = link_to board.name, board_lists_path(board)
       %form.navbar-form.navbar-left{role: "search"}
         .form-group
           %input.form-control{placeholder: "Search", type: "text"}

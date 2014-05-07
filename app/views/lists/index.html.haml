@@ -1,0 +1,27 @@
+.alert.alert-success
+  %strong Success! 
+  Changes have been saved.
+  %button.close{type: "button", "data-dismiss" => "alert", "aria-hidden" => "true"}
+    %span.glyphicon.glyphicon-remove
+    
+%h2
+  %span.glyphicon.glyphicon-list
+  = @board.name
+  Board
+  = link_to "#", class: "btn btn-default pull-right" do 
+    %span.glyphicon.glyphicon-user
+    Add memeber
+  .col-md-3.pull-right
+    = form_tag board_lists_path(@board), remote: true do 
+      .input-group
+        = text_field_tag :name, nil, class: "form-control"
+        = hidden_field_tag :board_id, @board.id
+        %span.input-group-btn
+          = submit_tag "Add list", {id: "new_list_btn", class: "btn btn-success", disabled: "disabled"}
+  
+.row.lists
+  = render @lists
+
+.modal.fade#lists-modal
+  .modal-dialog
+    .modal-content#lists-modal-content

@@ -7,8 +7,9 @@
 %h2
   %span.glyphicon.glyphicon-th-large
   My boards
-  = link_to new_board_path, class: "btn btn-sm btn-success", remote: true, title: "Add board", "data-toggle" => "tooltip" do 
+  = link_to new_board_path, class: "btn btn-success navbar-right", remote: true do 
     %span.glyphicon.glyphicon-plus
+    Add board
 .row.boards.owner
   = render @boards
   
