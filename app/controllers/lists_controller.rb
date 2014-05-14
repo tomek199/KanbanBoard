@@ -1,12 +1,12 @@
 class ListsController < ApplicationController
   before_action :set_list, only: [:show, :edit, :update, :destroy, :delete]
   before_action :get_boards
+  before_action :if_owner, only: [:index, :create]
 
   # GET /lists
   # GET /lists.json
   def index
     @board = Board.find params[:board_id]
-    @owner = UserBoard.owner? current_user, @board
     @lists = @board.lists.order(:order)
     @lists_size = List.get_size @board
   end
@@ -98,5 +98,10 @@ class ListsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def list_params
       params.require(:list).permit(:name, :board_id)
+    end
+    
+    def if_owner
+      @board = Board.find params[:board_id]
+      @owner = UserBoard.owner? current_user, @board
     end
 end
