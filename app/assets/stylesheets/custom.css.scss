@@ -11,3 +11,9 @@
 .best_in_place:hover {
   cursor: pointer;
 }
+
+.ui-sortable {
+  .panel-heading:hover {
+    cursor: move;
+  }
+}

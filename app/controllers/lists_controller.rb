@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-  before_action :set_list, only: [:show, :edit, :update, :destroy]
+  before_action :set_list, only: [:show, :edit, :update, :destroy, :delete]
   before_action :get_boards
 
   # GET /lists
@@ -62,8 +62,6 @@ class ListsController < ApplicationController
   # DELETE /lists/1
   # generate modal to confirm
   def delete
-    puts "---- delete list"
-    @list = List.find(params[:list_id])
     respond_to do |format|
       format.js {render action: "delete"}
     end
@@ -72,10 +70,23 @@ class ListsController < ApplicationController
   # DELETE /lists/1
   # DELETE /lists/1.json
   def destroy
-    @list.destroy
+    @list.destroy    
     respond_to do |format|
       format.js { }
     end
+  end
+  
+  # POST /boards/1/lists/sort
+  # Sort lists
+  def sort
+    i = 0;
+    list_orders = Hash[params[:list].to_a.map {|k| [k, i+=1]}]
+    lists = Board.find(params[:board_id]).lists.order(:order)
+    lists.each do |list|
+      list.order = list_orders[list.id.to_s]
+      list.save
+    end
+    render nothing: true
   end
 
   private

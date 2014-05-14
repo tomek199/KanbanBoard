@@ -1,10 +1,16 @@
 KanbanBoard::Application.routes.draw do
   
   devise_for :users
+  
   resources :boards do
     get "delete"
     resources :lists, shallow: true do 
-      get "delete"
+      member do 
+        get "delete"
+      end
+      collection do 
+        post "sort"
+      end
     end
   end
 
