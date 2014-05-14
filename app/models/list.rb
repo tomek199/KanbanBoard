@@ -7,4 +7,8 @@ class List < ActiveRecord::Base
     return 1 if order == nil
     order+=1
   end
+
+  def List.get_size(board_id)
+    List.select(:id).where(board_id: board_id).count
+  end
 end

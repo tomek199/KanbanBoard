@@ -3,7 +3,9 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
       
 lists_ready = -> 
-  $("input[name=name]#name.form-control").keyup ->
+
+  list_input = $("input[name=name]#name.form-control")
+  list_input.keyup ->
     if $(this).val() isnt null and $(this).val().length isnt 0
       $("#new_list_btn").attr "disabled", false
     else 

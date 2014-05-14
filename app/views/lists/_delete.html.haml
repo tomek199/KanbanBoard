@@ -1,0 +1,11 @@
+.modal-header
+  %h3 Delete list
+.modal-body
+  .alert.alert-danger 
+    Are you sure you want to delete list
+    %strong
+      = @list.name
+      ?
+  .modal-footer
+    = link_to "Yes", list_path(@list), method: :delete, remote: true, class: "btn btn-danger"
+    %button.btn.btn-default{"data-dismiss" => "modal"} No

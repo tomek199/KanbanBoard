@@ -8,16 +8,17 @@
   %span.glyphicon.glyphicon-list
   = @board.name
   Board
-  = link_to "#", class: "btn btn-default pull-right" do 
-    %span.glyphicon.glyphicon-user
-    Add memeber
-  .col-md-3.pull-right
-    = form_tag board_lists_path(@board), remote: true do 
-      .input-group
-        = text_field_tag :name, nil, class: "form-control"
-        = hidden_field_tag :board_id, @board.id
-        %span.input-group-btn
-          = submit_tag "Add list", {id: "new_list_btn", class: "btn btn-success", disabled: "disabled"}
+  - if @owner == 1
+    = link_to "#", class: "btn btn-default pull-right" do 
+      %span.glyphicon.glyphicon-user
+      Add memeber
+    .col-md-3.pull-right
+      = form_tag board_lists_path(@board), remote: true do 
+        .input-group
+          = text_field_tag :name, nil, new_list_input_disabled?(@lists_size)
+          = hidden_field_tag :board_id, @board.id
+          %span.input-group-btn
+            = submit_tag "Add list", {id: "new_list_btn", class: "btn btn-success", disabled: "disabled"}
   
 .row.lists
   = render @lists

@@ -6,7 +6,9 @@ class ListsController < ApplicationController
   # GET /lists.json
   def index
     @board = Board.find params[:board_id]
+    @owner = UserBoard.owner? current_user, @board
     @lists = @board.lists.order(:order)
+    @lists_size = List.get_size @board
   end
 
   # GET /lists/1
@@ -27,13 +29,15 @@ class ListsController < ApplicationController
   # POST /lists
   # POST /lists.json
   def create
+    name, board_id = params[:name], params[:board_id]
     @list = List.new
-    @list.name = params[:name]
-    @list.board_id = params[:board_id]
-    @list.order = List.get_max_order params[:board_id]
-    puts "----- create"
+    @list.name = name
+    @list.board_id = board_id
+    @list.order = List.get_max_order board_id
+    @lists_size = List.get_size board_id
     respond_to do |format|
-      if @list.save
+      if @lists_size < 6 && @list.save
+        @lists_size += 1
         format.js { render action: 'create', status: :created, location: @list}
       else
         format.js { render json: @list.errors, status: :unprocessable_entity }
@@ -54,14 +58,23 @@ class ListsController < ApplicationController
       end
     end
   end
+  
+  # DELETE /lists/1
+  # generate modal to confirm
+  def delete
+    puts "---- delete list"
+    @list = List.find(params[:list_id])
+    respond_to do |format|
+      format.js {render action: "delete"}
+    end
+  end
 
   # DELETE /lists/1
   # DELETE /lists/1.json
   def destroy
     @list.destroy
     respond_to do |format|
-      format.html { redirect_to lists_url }
-      format.json { head :no_content }
+      format.js { }
     end
   end
 
