@@ -1,6 +1,7 @@
 class List < ActiveRecord::Base
   validates_presence_of :name
   belongs_to :board
+  has_many :tasks, dependent: :delete_all
   
   # get max order of lists
   def List.get_max_order(board_id)

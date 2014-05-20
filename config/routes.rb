@@ -13,6 +13,10 @@ KanbanBoard::Application.routes.draw do
       end
     end
   end
+  
+  resources :lists, shallow: true do 
+    resources :tasks
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

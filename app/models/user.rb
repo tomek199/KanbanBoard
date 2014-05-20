@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
          
   has_many :user_boards, dependent: :delete_all
   has_many :boards, through: :user_boards
+  has_many :tasks
 end

@@ -1,5 +1,4 @@
 $(".row.lists").append "<%=j render @list %>"
-$("#lists-modal").modal "hide"
 $("input[name=name]").val ""
 $("#new_list_btn").attr "disabled", true
 

@@ -6,12 +6,12 @@
           = best_in_place list, :name, type: :input
         - else 
           = list.name
-        - if @owner == 1
-          .btn-group.pull-right
-            %span.glyphicon.glyphicon-circle-arrow-down.dropdown-toggle{"data-toggle" => "dropdown"}
-            %ul.dropdown-menu{role: "menu"}
-              %li
-                = link_to "Delete", delete_list_path(list), remote: true
+        .btn-group.pull-right
+          %span.glyphicon.glyphicon-circle-arrow-down.dropdown-toggle{"data-toggle" => "dropdown"}
+          %ul.dropdown-menu{role: "menu"}
+            %li= link_to "Add task", new_list_task_path(list), remote: true
+            - if @owner == 1
+              %li= link_to "Delete list", delete_list_path(list), remote: true
           
     .panel-body
-      
+      = render list.tasks
