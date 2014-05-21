@@ -15,7 +15,11 @@ KanbanBoard::Application.routes.draw do
   end
   
   resources :lists, shallow: true do 
-    resources :tasks
+    resources :tasks do 
+      member do 
+        post "sort"
+      end
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

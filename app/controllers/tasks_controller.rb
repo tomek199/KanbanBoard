@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :sort]
 
   # GET /tasks
   # GET /tasks.json
@@ -60,6 +60,13 @@ class TasksController < ApplicationController
       format.html { redirect_to tasks_url }
       format.json { head :no_content }
     end
+  end
+  
+  # POST board/1/task/1/sort
+  def sort
+    @task.list_id = params[:list_id]
+    @task.save
+    render nothing: true
   end
 
   private
