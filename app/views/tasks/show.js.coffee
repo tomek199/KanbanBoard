@@ -1,2 +1,2 @@
-$("#lists-modal-content").html "<%= escape_javascript(render 'show') %>"
-$("#lists-modal").modal "show"
+$("#task-modal-content").html "<%= escape_javascript(render 'show') %>"
+$("#task-modal").modal "show"
